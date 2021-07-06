@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <p>Are you sure u want to delte:{{post}}
+    <form action="{% url 'deletePost' post.id  %}" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        <a href="{% url 'listPage'   %}">Cancel</a>
+        <input type="submit" value="Delete">
+    </form>
+{% endblock %}

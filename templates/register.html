@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container">
+        <div class="form-container">
+            <h1>Register</h1>
+            <hr>
+            
+            <form action="" class="form-group" method="POST" >
+                {%csrf_token%}
+                <div class="account-form"> 
+                    {{form.username.label}}
+                    {{form.username|add_class:"account-input"}}
+                </div>
+
+                <div class="account-form"> 
+                    {{form.email.label}}
+                    {{form.email|add_class:"account-input"}}
+                </div>
+
+                <div class="account-form"> 
+                    {{form.password1.label}}
+                    {{form.password1|add_class:"account-input"}}
+                </div>
+
+                <div class="account-form"> 
+                    {{form.password2.label}}
+                    {{form.password2|add_class:"account-input"}}
+                </div>
+
+                <div class="footer">
+                    <input type="submit" class="submit-form login" value="Login">
+                    <span class="footer-span">Not registered yet?<a href="{% url 'login'   %}">Log In</a></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

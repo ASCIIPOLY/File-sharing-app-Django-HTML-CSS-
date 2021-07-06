@@ -1,0 +1,2 @@
+border outset --- cartlar için
+text-align justify

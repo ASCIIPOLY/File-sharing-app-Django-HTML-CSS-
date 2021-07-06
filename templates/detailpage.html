@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section class="section">
+        <div class="alllist-container">
+          {%if post %}
+            <div class="list-container">
+                <div class="left-list">
+                    <img src="{{ post.author.profile.image.url }}" alt="">
+                </div>
+                <div class="right-list">
+                    <div class="toplist">
+                        <a href="#" class="Userlink"><h1>User</h1></a>
+                        {%if user == post.author%}
+                        <a href="{% url 'updatePost' post.id  %}" class="Update">updatePost</a>
+                        <a href="{% url 'deletePost' post.id  %}" class="Delete">deletePost</a>
+                        {%endif%}
+                    </div>
+                    <hr>
+                    {% if post.files %}
+                    <div class="static-container">
+                        {% if post.extension == '.jpg' or post.extension == '.jpeg' or post.extension == '.png' %}
+  
+                          <a href="{{ post.files.url }}"  download ><img src="{{ post.files.url }}" alt="sd" class="img-detail"></a>
+                          <a href="{{ post.files.url }}"  download ><h5>{{ post.files }}</h5></a> 
+                          
+                        {% elif post.extension == '.mp4' %}
+                          <div >
+                            <video id="video-1_html_api" preload="auto"  controls class="video-detail"> 
+                              <source src="{{ post.files.url }}" type="video/mp4" >
+                            </video>
+                          </div>
+                          <a href="{{ post.files.url }}"  download ><h5>{{ post.files }}</h5></a>
+                          {% else %}
+                          <a href="{{ post.files.url }}"  download ><h5>{{ post.files }}</h5></a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+            
+                    <h2>File:{{post.title}}</h2>
+                    <div class="content-container">
+                        <p>{{post.content}}</p>
+                        {%if post.files%}
+                            <a href="{{ post.files.url }}" class="download" download><i class="fas fa-download" >Download</i></a>
+                        {%endif%}
+                    </div>
+                </div>   
+            
+            </div>
+          {%endif%}
+        </div>
+</section>
+{% endblock %}

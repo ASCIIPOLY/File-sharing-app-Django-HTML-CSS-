@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+    <div class="container">
+        <div class="form-container">
+            <div class="header-container">
+                <img src="{{ user.profile.image.url }}" alt="">
+                <div class="right-header">
+                    <h1>{{user.username}}</h1>
+                    <p>{{user.email}}</p>
+                </div>
+            </div>
+            <div class="profile-information">
+                <h2>Profile Information</h2>
+                <hr>
+            </div>
+            <form action="" class="form-group" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="account-form"> 
+                    {{ u_form.username.label}}
+                    {{ u_form.username|add_class:"account-input"}}
+                </div>
+
+                <div class="account-form"> 
+                    {{ u_form.email.label}}
+                    {{ u_form.email|add_class:"account-input"}}
+                </div>
+                <div class="account-form">
+                    {{p_form}}
+                </div>
+                <div class="footer">
+                    <input type="submit" class="submit-form login" value="Update">
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+

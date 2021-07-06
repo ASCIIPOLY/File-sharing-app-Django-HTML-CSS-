@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+        <div class="form-container">
+            <h1>Update</h1>
+            <hr>
+            
+            <form action="" class="form-group" method="POST" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="account-form"> 
+                    {{form.title.label}}
+                    {{form.title}}
+                </div>
+
+                <div class="account-form"> 
+                    {{form.content.label}}
+                    {{form.content}}
+                </div>
+
+                <div class="account-form"> 
+                    
+                    {{form.files}}
+                </div>
+
+
+                <div class="footer">
+                    <input type="submit" class="submit-form login" value="Update">
+                    
+                </div>
+
+            </form>
+        </div>
+</div>
+{% endblock %}
+

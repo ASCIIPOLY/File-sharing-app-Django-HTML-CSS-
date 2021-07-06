@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+    <section class="section">
+        <div class="alllist-container">
+            {%for post in posts%}
+            <div class="list-container">
+                <div class="left-list">
+                    <img src="{{ post.author.profile.image.url }}" alt="">
+                </div>
+                <div class="right-list">
+                    <div class="toplist">
+                        <a href="{% url 'UserSpecifiedPosts' post.author  %}" class="Userlink"><h1>{{ post.author }}</h1></a>
+                        {%if user == post.author%}
+                        <a href="{% url 'updatePost' post.id  %}" class="Update">updatePost</a>
+                        <a href="{% url 'deletePost' post.id  %}" class="Delete">deletePost</a>
+                        {%endif%}
+                    </div>
+                    <hr>
+                    <h2>{{post.title}}</h2>
+                    <br>
+                    {%if post.files%}
+                        <a href="{% url 'detailPage' post.id  %}"><h2>{{post.files}}</h2></a>
+                    {%endif%}
+                    <div class="content-container">
+                        <p>{{post.content}}</p>
+                        {%if post.files%}
+                            <a href="{{ post.files.url }}" class="download" download><i class="fas fa-download" ></i></a>
+                        {%endif%}
+                    </div>
+                </div>   
+            
+            </div>
+            {%endfor%}
+        </div>
+    </section>
+{% endblock %}
+{% comment %} 
+    <h1>List page</h1>
+    {%for post in posts%}
+        <a href="{% url 'detailPage' post.id  %}"><h2>deneme postudur:{{post.title}}</h2></a>
+        
+        <a href="{% url 'updatePost' post.id  %}">updatePost</a>
+        <a href="{% url 'deletePost' post.id  %}">deletePost</a>
+        {%if post.files%}
+            <a href="{{ post.files.url }}"  download='DENEME' class="text-dark"><h5>download</h5></a>
+        {%endif%}
+    {%endfor%} {% endcomment %}
